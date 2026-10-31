@@ -1,0 +1,199 @@
+.cc_disclaimer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #000;
+    z-index: 9999999;
+    padding-top: 0px;
+    line-height: 1.4em;
+    text-align: left;
+    border-top: 3px solid #8c7059;
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 0.8s;
+    -moz-animation-duration: 0.8s;
+    -o-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeInTop;
+    animation-name: fadeInTop;
+    transition: 0.3s all;
+}
+.cc_disclaimer:hover {
+    border-top: 3px solid #ddae71;
+}
+.cc_disclaimer .cc_disclaimer_box {
+    position: relative;
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content {
+    position: relative;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_head {
+    position: relative;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_head span {
+    color: #8c7059;
+    font-weight: bold;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_body {
+    position: relative;
+    margin-bottom: 10px;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_body a {
+    color: #8c7059;
+    text-decoration: none;
+    font-weight: bold;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_body a:hover {
+    color: #ddae71;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_buttons {
+    position: relative;
+    display: inline-block;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_buttons .cc_button_allow,
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_buttons .cc_button_disallow {
+    display: inline-block;
+    border: 0px;
+    color: white;
+    padding: 4px 8px;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    -khtml-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_buttons .cc_button_allow {
+    background: #8c7059;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_buttons .cc_button_allow:hover {
+    background: #ddae71;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_buttons .cc_button_disallow {
+    color: #000;
+    background: transparent;
+}
+.cc_disclaimer .cc_disclaimer_box .cc_disclaimer_content .cc_disclaimer_buttons .cc_button_disallow:hover {
+    text-decoration: underline;
+}
+
+.cc_disclaimer_banner_wrapper {
+    z-index: 9001;
+    position: relative;
+}
+.cc_disclaimer_banner_wrapper .cc_disclaimer_banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    padding: 10px 15px 20px;
+    -webkit-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
+    background: #fff;
+    font-size: 17px;
+    box-sizing: border-box;
+    border-top: 3px solid #8c7059;
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 0.8s;
+    -moz-animation-duration: 0.8s;
+    -o-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeInRight;
+    animation-name: fadeInRight;
+    color: #000;
+    transition: 0.3s all;
+}
+.cc_disclaimer_banner_wrapper .cc_disclaimer_banner:hover {
+    border-top: 3px solid #ddae71;
+}
+.cc_disclaimer_banner_wrapper .cc_disclaimer_banner .cc_disclaimer_message {
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+.cc_disclaimer_banner_wrapper .cc_disclaimer_banner .cc_disclaimer_message a {
+    color: #000;
+    text-decoration: underline;
+}
+.cc_disclaimer_banner_wrapper .cc_disclaimer_banner .cc_disclaimer_banner_button {
+    display: inline-block;
+    width: 100%;
+    border: 0px;
+    color: #fff;
+    padding: 3px 8px;
+    background: #8c7059;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    -khtml-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+.cc_disclaimer_banner_wrapper .cc_disclaimer_banner .cc_disclaimer_banner_button:hover {
+    background: #ddae71;
+}
+
+@media screen and (min-width: 768px) {
+
+    .cc_disclaimer_banner_wrapper .cc_disclaimer_banner {
+        padding-bottom: 87px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+
+    .cc_disclaimer_banner_wrapper .cc_disclaimer_banner {
+        left: initial;
+        left: 20px;
+        bottom: 20px;
+        width: 300px;
+        padding-bottom: 20px;
+    }
+}
+
+@keyframes fadeInRight {
+   0% {
+      opacity: 0;
+      transform: translateX(-20px);
+   }
+   100% {
+      opacity: 1;
+      transform: translateX(0);
+   }
+}
+
+@keyframes fadeInTop {
+   0% {
+      opacity: 0;
+      transform: translateY(300px);
+   }
+   100% {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}

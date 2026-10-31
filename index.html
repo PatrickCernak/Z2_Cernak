@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Obedové menu v okolí FEI STU</title>
+
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script src="js/script.js" defer></script>
+</head>
+
+
+
+<body class="page">
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+
+                <img
+                    src="images/favicon.png"
+                    alt="Logo obedového menu"
+                    class="header-logo"
+                >
+
+                <h1>Obedové menu v okolí FEI STU</h1>
+
+            </div>
+        </div>
+    </header>
+
+
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#menu">Obedové menu</a></li>
+                <li><a href="#projekt">O projekte</a></li>
+            </ul>
+        </div>
+        
+    </nav>
+
+
+    <main>
+        <div class="container">
+            <section id="menu">
+
+                <div class="menu-header">
+                    <h2>Týždenné menu</h2>
+
+                    <p>
+                        Pozrite si menu reštaurácií
+                        v okolí FEI STU.
+                    </p>
+                </div>
+
+                <section>
+                    <h3>Vyber deň</h3>
+
+                    <div id="day-picker" class="day-selector d-flex flex-wrap gap-3">
+                        <button type="button" class="btn btn-outline-danger">Pondelok</button>
+                        <button type="button" class="btn btn-outline-danger">Utorok</button>
+                        <button type="button" class="btn btn-outline-danger">Streda</button>
+                        <button type="button" class="btn btn-outline-danger">Štvrtok</button>
+                        <button type="button" class="btn btn-outline-danger">Piatok</button>
+                        <button type="button" class="btn btn-dark">Celý týždeň</button>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Filtrovať reštaurácie</h3>
+
+                    <div class="restaurant-filter">
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="restaurant"
+                                value="eat-and-meet"
+                                checked
+                            >
+                            Eat &amp; Meet
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="restaurant"
+                                value="drag"
+                                checked
+                            >
+                            Drag
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="restaurant"
+                                value="fiit-food"
+                                checked
+                            >
+                            FIIT Food
+                        </label>
+                    </div>
+
+                    <p id="no-restaurants-selected" class="mt-3" hidden>
+                        Vyberte aspoň jednu reštauráciu, aby sa zobrazilo jej menu.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="restaurant-menu-heading">Jedálne lístky reštaurácií</h3>
+
+                         <div class="menu-actions d-flex flex-wrap gap-2 mb-4">
+                            <button
+                                type="button"
+                                id="update-menu"
+                                class="btn btn-danger">
+                                Aktualizovať menu
+                            </button>
+
+                            <button
+                                type="button"
+                                id="clear-menu-storage"
+                                class="btn btn-outline-secondary">
+                                Vymazať uložené dáta
+                            </button>
+                        </div>
+
+                        <p id="menu-storage-message" class="small text-muted"></p>
+
+                        <article class="restaurant-card">
+                            <h4>Eat &amp; Meet</h4>
+                            <p>
+                                <a
+                                    href="https://eatandmeet.sk/tyzdenne-menu"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Pozrieť pôvodné menu
+                                </a>
+                            </p>
+
+                            <p class="small text-muted">
+                                Posledná aktualizácia:
+                                <time id="eat-and-meet-updated">zatiaľ žiadna</time>
+                            </p>
+
+                            <div id="eat-and-meet-menu">
+                                <p>Menu sa načítava...</p>
+                            </div>
+                        </article>
+
+
+                        <article class="restaurant-card">
+                            <h4>DRAG</h4>
+
+                            <p>
+                                <a
+                                    href="https://www.restauracia-drag.sk/denne-menu"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Pozrieť pôvodné menu
+                                </a>
+                            </p>
+
+                            <p class="small text-muted">
+                                Posledná aktualizácia:
+                                <time id="drag-updated">zatiaľ žiadna</time>
+                            </p>
+
+                            <div id="drag-menu">
+                                <p>Menu sa načítava...</p>
+                            </div>
+                        </article>
+
+
+                        <article class="restaurant-card">
+                            <h4>FIIT Food</h4>
+
+                            <p>
+                                <a
+                                    href="http://www.freefood.sk/menu/#fiit-food"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Pozrieť pôvodné menu
+                                </a>
+                            </p>
+
+                            <p class="small text-muted">
+                                Posledná aktualizácia:
+                                <time id="fiit-food-updated">zatiaľ žiadna</time>
+                            </p>
+
+                            <div id="fiit-food-menu">
+                                <p>Menu sa načítava...</p>
+                            </div>
+                        </article>
+
+                </section>
+
+            </section>
+
+
+
+            <section id="projekt">
+
+                <h2>O projekte</h2>
+                <p>
+                    Cieľom projektu je zhromaždiť obedové menu reštaurácií
+                    v okolí FEI STU na jednom mieste a umožniť používateľom
+                    jednoducho si prezerať ponuku jednotlivých jedální.
+                </p>
+
+                <h3>Zdrojové stránky</h3>
+
+                <p>
+                    Údaje o obedovom menu získavame z nasledujúcich webových stránok:
+                </p>
+
+                <ul>
+                    <li>
+                        <a href="https://eatandmeet.sk/tyzdenne-menu"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                            Eat &amp; Meet
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.restauracia-drag.sk/denne-menu"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                            Reštaurácia DRAG
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="http://www.freefood.sk/menu/#fiit-food"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                            FIIT Food
+                        </a>
+                    </li>
+                </ul>
+
+                <h3>Spracovanie údajov</h3>
+                <p>
+                    Menu jednotlivých reštaurácií načítavame z lokálnych
+                    HTML kópií uložených v priečinku projektu. Na načítanie
+                    používame Fetch API. Získaný HTML kód následne spracujeme
+                    pomocou DOMParser a pomocou jQuery selektorov z neho
+                    vyberáme potrebné údaje, napríklad názvy jedál, ich ceny
+                    a alergény.
+                </p>
+                <p>
+                    Údaje z jednotlivých reštaurácií prevádzame do jednotnej
+                    JavaScriptovej štruktúry, aby sa dali zobrazovať rovnakým
+                    spôsobom. Spracované údaje ukladáme do localStorage,
+                    aby sa pri opätovnom otvorení stránky nemuseli vždy
+                    načítavať zdrojové súbory.
+                </p>
+
+                <h3>Použité technológie a knižnice</h3>
+                <ul>
+                    <li>HTML5 – vytvorenie štruktúry stránky.</li>
+                    <li>CSS3 – úprava vzhľadu stránky.</li>
+                    <li>JavaScript – spracovanie údajov a funkčnosť stránky.</li>
+                    <li>jQuery 3.7.1 – vyhľadávanie a spracovanie HTML elementov.</li>
+                    <li>Bootstrap 5.3.8 – responzívny dizajn a rozloženie prvkov.</li>
+                    <li>Fetch API a DOMParser – načítanie a spracovanie HTML dokumentov.</li>
+                    <li>localStorage – ukladanie spracovaných údajov v prehliadači.</li>
+                </ul>
+
+            </section>
+        </div>
+        
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <p>
+                &copy; 2026 Obedové menu v okolí FEI STU
+            </p>
+
+            <p>
+                Patrik Černák |
+                <a href="#projekt">O projekte</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+
+</html>

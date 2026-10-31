@@ -1,0 +1,168 @@
+var ua     = navigator.userAgent;
+var isiPad = /iPad/i.test(ua) || /iPhone OS 3_1_2/i.test(ua) || /iPhone OS 3_2_2/i.test(ua);
+
+var fancyboxDefaults = {
+	'transitionIn'	 : 'elastic',
+	'transitionOut'	 : 'elastic',
+	'speedIn'		 : 600,
+	'speedOut'		 : 200,
+	'overlayOpacity' : 0.8,
+	'overlayColor'   : '#333333',
+	'titlePosition'  : 'over',
+	'titleShow'      : false
+};
+
+if(isiPad) {
+	$.extend(fancyboxDefaults, {
+		'centerOnScroll' : false
+	});
+};
+
+$(document).ready(function() {
+	$("img[src*='img.php']:not(img[src*='resize'])").each(function() {
+		var w = $(this).width();
+		var h = $(this).height();
+		$(this).attr('src', $(this).attr('src') + '&resize=1&sx=' + w + '&sy=' + h);
+	});
+
+    $("a[href*=img]:has('img'):not('.jqzoom'):not('[data-fancybox]')").each(function() {
+        $(this).attr("data-fancybox", "inline");
+    });
+
+    $("a[href*=jpg]:has('img'):not('.jqzoom'):not('[data-fancybox]')").each(function() {
+        $(this).attr("data-fancybox", "inline");
+    });
+
+    /*
+	$("a[href*=img]:has('img'):not('.jqzoom')").each(function() {
+		$(this).attr("data-rel", "lightbox");
+	});
+
+	$("a[href*=jpg]:has('img'):not('.jqzoom')").each(function() {
+		$(this).attr("data-rel", "lightbox");
+	});
+
+	$("a[type^='lightbox']:has('img')").each(function() {
+		$(this).attr("data-rel", $(this).attr("type"));
+	});
+    */
+
+	$("a[data-rel^=lightbox],a[type^='lightbox']:has('img')").each(function() {
+		if($(this).is(".video")) {
+			var fopts = $.extend({}, fancyboxDefaults, {'type' : 'iframe'});
+		} else {
+			var fopts = $.extend({}, fancyboxDefaults, {'type' : 'image'});
+		};
+
+		if($(this).attr('clickclose') == '1') {
+			$.extend(fopts,{'hideOnContentClick':true});
+		};
+
+		$(this).fancybox(fopts)
+	});
+
+	$("img.resizedimage").css("cursor", "pointer").click(function() {
+		$.fancybox($(this).attr("data-full-src"), $.extend({}, fancyboxDefaults, {'type' : 'image'}));
+	});
+
+	$('.youtube iframe').each(function() {
+		var url = $(this).attr("src");
+		$(this).attr("src", url + "?wmode=transparent");
+	});
+
+	$("form.ajax .submit").attr('disabled','');
+	$("form.ajax").ajaxForm({
+		success: function(response){
+			$.fancybox.open('<div style="background: white; color: black;">' + response + '</div>');
+
+		}
+	});
+
+	$('p').filter(function() {
+		return $.trim($(this).text()) === '' && $(this).children().length == 0
+	}).remove();
+
+	$("[data-echelon_editor]").fancybox({
+		iframe : {
+			buttons : [
+				'close', 'fullScreen'
+			],
+			css : {
+				'width' : '860',
+				'max-width': '860px',
+				// 'height' : '100%',
+				// 'min-height' : '500px'
+			},
+		},
+		afterClose : function(instance, slide) {
+			window.location.reload();
+		}
+	});
+
+	/*
+	$(".lazyLoad").unveil(200, function() {
+	    $(this).load(function() {
+	        this.style.opacity = 1;
+	    });
+	});
+	*/
+});
+
+
+var cookies_disclaimer = {
+    'allow': function() {
+
+        $.ajax({
+            url: 'index.php?action=cc_disclaimer_allow',
+            method: 'get',
+            data: $('.cc_disclaimer input[type=checkbox]:checked'),
+            dataType: 'json',
+            beforeSend: function() { },
+            success: function() {
+                window.location.reload();
+            },
+            complete: function() {
+                window.location.reload();
+            }
+        });
+    },
+    'disallow': function() {
+
+        $.ajax({
+            url: 'index.php?action=cc_disclaimer_disallow',
+            beforeSend: function() { },
+            success: function() {
+                window.location.reload();
+            },
+            complete: function() {
+                window.location.reload();
+            }
+        });
+    },
+    'show': function() {
+
+        $.ajax({
+            url: 'index.php?action=cc_disclaimer_show',
+            beforeSend: function() { },
+            success: function() {
+                window.location.reload();
+            },
+            complete: function() {
+                window.location.reload();
+            }
+        });
+    },
+	'change': function() {
+
+        $.ajax({
+            url: 'index.php?action=cc_disclaimer_change',
+            beforeSend: function() { },
+            success: function() {
+                window.location.reload();
+            },
+            complete: function() {
+                window.location.reload();
+            }
+        });
+    },
+};

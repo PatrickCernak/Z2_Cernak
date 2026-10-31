@@ -1,0 +1,51 @@
+.termsfeed-com---palette-light.termsfeed-com---nb {
+    background-color: #f2f2f2;
+    color: #111;
+}
+
+.termsfeed-com---nb-simple {
+    max-width: 100%!important;
+    width: 100%!important;
+}
+
+.termsfeed-com---nb .cc-nb-main-container {
+    padding: 0.1rem 1rem !important;
+}
+
+.termsfeed-com---nb .cc-nb-text {
+    font-size: 14px!important;
+}
+
+
+.cc-nb-title{
+    margin-bottom: 0.35rem!important;
+    margin-top: 0.5em!important;
+    font-size:20px!important;
+}
+
+.cc-nb-buttons-container{
+    margin-bottom: 0.2em;
+}
+
+
+@media (max-width: 1000px) {
+
+    .cc-nb-buttons-container {
+        display: flex!important;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .cc-nb-okagree, .cc-nb-reject{
+        flex: 0 0 48.75%;
+
+    }
+
+    .cc-nb-changep{
+        flex: 0 0 98.5%;
+    }
+
+    .termsfeed-com---nb .cc-nb-text {
+        font-size: 12px!important;
+    }
+}

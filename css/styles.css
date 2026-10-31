@@ -1,0 +1,330 @@
+:root {
+    --background-color: #fff;
+    --background-header: #0c0501d7;
+    --background-nav: #f5f5f5;
+    --background-soft: #f7f7f7;
+
+    --color-headers: #c41818;
+    --color-text: #0e0d0d;
+    --color-text-header: #c21212f3;
+    --color-text-muted: #666;
+    --color-text-secondary: #555;
+
+    --border-color: #e5e5e5;
+    --border-subtle: #eeeeee;
+
+    --background-hover: #fbeeee;
+    --shadow-color: #f0f0f0;
+}
+
+
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/Inter-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--color-text);
+
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--background-header);
+    color: var(--color-text-header);
+    line-height: 1;
+    font-size: small;
+    display: flex;
+    text-align: center;
+    padding: 0;
+    
+    border-bottom: 1px solid var(--color-text);
+}
+
+/* LOGO V HLAVIČKE */
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 15px 0;
+}
+
+.header-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.header-content h1 {
+    margin: 0;
+}
+
+
+/* Navigácia */
+.main-nav {
+    background-color: var(--background-nav);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 3px 12px var(--shadow-color);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.main-nav a {
+    display: block;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
+
+    transition: color 0.2s ease,
+                background-color 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: var(--color-headers);
+    background-color: var(--background-hover);
+}
+
+/* Hlavný obsah */
+main {
+    padding-top: 35px;
+    padding-bottom: 60px;
+}
+
+/* Nadpis sekcie */
+.menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.menu-header h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--color-headers);
+    font-size: 2.2rem;
+    line-height: 1.2;
+}
+
+.menu-header p {
+    color: #666;
+    margin: 0;
+}
+
+/* Jednotlivé sekcie */
+#menu > section {
+    margin-bottom: 35px;
+}
+
+#menu h3 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+
+/* Filter reštaurácií */
+.restaurant-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.restaurant-filter label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.restaurant-filter input {
+    accent-color: var(--color-headers);
+    cursor: pointer;
+}
+
+/* Karta reštaurácie */
+.restaurant-card {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-top: 5px solid var(--color-headers);
+    border-bottom: 5px solid var(--color-headers);
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 16px;
+}
+
+.restaurant-card h4 {
+    font-size: 1.4rem;
+    margin: 0 0 8px;
+}
+
+.restaurant-card a {
+    color: var(--color-headers);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.restaurant-card a:hover {
+    text-decoration: underline;
+}
+
+.restaurant-card section {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 18px;
+}
+
+.restaurant-card h5 {
+    font-size: 1rem;
+    margin: 0 0 6px;
+}
+
+.restaurant-card section p {
+    margin: 0;
+    color: #555;
+}
+
+/* Jednotlivé dni týždňa */
+.menu-day-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Nadpisy Polievky a Hlavné jedlá */
+.menu-group-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+/* Označenie položky, napr. Polievka 1 alebo MENU 1 */
+.menu-item-category {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Názov samotného jedla */
+.menu-item-name {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Alergény */
+.menu-allergens {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+/* Cena */
+.menu-price {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+/* Karta jedla */
+.menu-card {
+    border-radius: 10px;
+}
+
+
+#menu {
+    scroll-margin-top: 85px;
+}
+
+/* O projekte */
+#projekt {
+    scroll-margin-top: 85px;
+    margin-top: 55px;
+    padding: 28px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
+#projekt h2 {
+    color: var(--color-headers);
+    margin-top: 0;
+}
+
+
+
+
+/* FOOTER */
+
+.page-footer {
+    margin-top: 50px;
+    padding: 25px 0;
+    text-align: center;
+    background-color: var(--background-nav);
+    border-top: 1px solid var(--border-color);
+    color: var(--color-text);
+}
+
+.page-footer p {
+    margin-bottom: 5px;
+}
+
+.page-footer a {
+    color: var(--color-headers);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.page-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Menšie obrazovky */
+@media (max-width: 600px) {
+    .main-nav ul {
+        gap: 22px;
+    }
+
+    .menu-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .header-logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .header-content {
+        gap: 10px;
+    }
+
+    .restaurant-card {
+        padding: 16px;
+    }
+
+    #projekt {
+        padding: 20px;
+    }
+}

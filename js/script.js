@@ -41,11 +41,7 @@ function saveMenu(restaurantId, days) {
             MENU_STORAGE_PREFIX + restaurantId,
             JSON.stringify(data)
         );
-    } catch (error) {
-        console.warn(
-            `Menu ${restaurantId} sa nepodarilo uložiť:`,
-            error
-        );
+    } catch {
     }
 
     return new Date(data.savedAt);
@@ -83,12 +79,7 @@ function loadSavedMenu(restaurantId) {
             savedAt,
             days: data.days
         };
-    } catch (error) {
-        console.warn(
-            `Uložené menu ${restaurantId} sa nepodarilo načítať:`,
-            error
-        );
-
+    } catch {
         return null;
     }
 }
@@ -223,9 +214,7 @@ function parseDrag(html) {
             .first();
 
 
-        // Polievka je v HTML zapísaná ako obyčajný text
-        // medzi nadpismi POLIEVKA a HLAVNÉ JEDLO.
-
+        // Polievka 
         if ($soupHeading.length && $mainHeading.length) {
             let soupText = "";
             let node = $soupHeading.parent()[0].nextSibling;
@@ -275,8 +264,7 @@ function parseDrag(html) {
         }
 
 
-        // Hlavné jedlá sú v tabuľke pod nadpisom
-        // HLAVNÉ JEDLO.
+        // HLAVNÉ JEDLO
 
         if ($mainHeading.length) {
             const $table = $mainHeading
@@ -343,12 +331,10 @@ function parseDrag(html) {
 
 // SPRACOVANIE Fiit-Food
 
-
 function parseFiitFood(html) {
     const doc = new DOMParser().parseFromString(html, "text/html");
     const days = [];
 
-    // Každý hlavný li element predstavuje jeden deň.
     const $dayItems = $(doc).find("#fiit-food ul.daily-offer > li");
 
     $dayItems.each((dayIndex, dayItem) => {
@@ -358,7 +344,6 @@ function parseFiitFood(html) {
             $dayItem.children(".day-title").first().text()
         );
 
-        // Napr. "pondelok, 26.10.2026" zmeníme na "Pondelok".
         const dayText = fullDayName.split(",")[0].toLowerCase();
         const dayName = dayText.charAt(0).toUpperCase() + dayText.slice(1);
 
@@ -367,11 +352,9 @@ function parseFiitFood(html) {
         let soupNumber = 0;
         let mainNumber = 0;
 
-        // Jedlá sa nachádzajú v zozname day-offer.
         $dayItem.children("ul.day-offer").children("li").each((index, item) => {
             const $item = $(item);
 
-            // P. označuje polievku, 1., 2., 3. hlavné jedlá.
             const marker = cleanText(
                 $item.children("span.brand:not(.price)").first().text()
             );
@@ -387,7 +370,6 @@ function parseFiitFood(html) {
                 $item.children("span.price").last().text()
             );
 
-            // Skopírujeme riadok a odstránime označenia aj cenu.
             const $copy = $item.clone();
             $copy.find("span.brand").remove();
 
@@ -397,7 +379,6 @@ function parseFiitFood(html) {
                 return;
             }
 
-            // Ak je reštaurácia zatvorená, uložíme to osobitne.
             if (/^zatvorené$/i.test(name)) {
                 meals.push({
                     category: "",
@@ -410,21 +391,18 @@ function parseFiitFood(html) {
                 return;
             }
 
-            // Vyberieme alergény označené A:.
             const allergenMatch = name.match(/\bA:\s*([\d,\s]*)/i);
 
             const allergens = allergenMatch && cleanText(allergenMatch[1])
                 ? `(${cleanText(allergenMatch[1]).replace(/\s/g, "")})`
                 : "";
 
-            // Alergény odstránime z názvu jedla.
             name = cleanText(name.replace(/\bA:\s*[\d,\s]*/i, ""));
 
             if (!name) {
                 return;
             }
 
-            // Zjednotíme zápis ceny, napr. 1.70€ na 1,70 €.
             const formattedPrice = price
                 .replace(/\./g, ",")
                 .replace(/\s*€$/, " €");
@@ -610,7 +588,6 @@ function renderMenu(restaurant, days) {
 
 
 // PREKRESLENIE VŠETKÝCH REŠTAURÁCIÍ
-
 function renderAllMenus() {
     restaurants.forEach(restaurant => {
         if (menuData[restaurant.id]) {
@@ -621,33 +598,39 @@ function renderAllMenus() {
 
 
 // VÝBER DŇA
-
 function setupDayButtons() {
-    const $buttons = $("#day-picker button");
+    const buttons = document.querySelectorAll(
+        "#day-picker button"
+    );
 
-    $buttons.on("click", function () {
-        $buttons.removeClass("active");
-        $(this).addClass("active");
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
 
-        const day = cleanText($(this).text());
+            buttons.forEach(item => {
+                item.classList.remove("active");
+            });
 
-        if (day.toLowerCase().includes("celý týždeň")) {
-            selectedDay = "all";
-        } else {
-            selectedDay = day;
-        }
+            button.classList.add("active");
 
-        renderAllMenus();
+            const day = cleanText(button.textContent);
+
+            if (day.toLowerCase() === "celý týždeň") {
+                selectedDay = "all";
+            } else {
+                selectedDay = day;
+            }
+
+            renderAllMenus();
+        });
     });
 
-    const $todayButton = $buttons.filter(function () {
-        return cleanText($(this).text()).toLowerCase()
-            === selectedDay.toLowerCase();
-    }).first();
+    const todayButton = Array.from(buttons).find(button =>
+        cleanText(button.textContent).toLowerCase()
+            === selectedDay.toLowerCase()
+    );
 
-    if ($todayButton.length) {
-        $buttons.removeClass("active");
-        $todayButton.addClass("active");
+    if (todayButton) {
+        todayButton.classList.add("active");
     }
 }
 
@@ -675,27 +658,17 @@ function setupRestaurantFilters() {
         );
 
         if (!menu) {
-            console.error(
-                "Nenašlo sa menu pre reštauráciu:",
-                checkbox.value
-            );
             return;
         }
 
         const card = menu.closest(".restaurant-card");
 
         if (!card) {
-            console.error(
-                "Nenašla sa karta reštaurácie:",
-                checkbox.value
-            );
             return;
         }
 
-        // Pri načítaní nastavíme viditeľnosť podľa checkboxu.
         card.hidden = !checkbox.checked;
 
-        // Po zmene checkboxu skryjeme alebo zobrazíme kartu.
         checkbox.addEventListener("change", function () {
             card.hidden = !this.checked;
             updateMessage();
@@ -706,8 +679,7 @@ function setupRestaurantFilters() {
 }
 
 
-// ZOBRAZENIE ČASU POSLEDNEJ AKTUALIZÁCIE
-
+// ZOBRAZENIE CASU POSLEDNEJ AKTUALIZACIE
 function showUpdateTime(restaurant, date) {
     const timeElement = document.getElementById(
         `${restaurant.id}-updated`
@@ -727,20 +699,14 @@ function showUpdateTime(restaurant, date) {
 }
 
 
-// LOAD ONE RESTAURANT
-
+// NACITANIE RESTAURACIE
 async function loadRestaurant(restaurant, forceRefresh = false) {
     const $container = $(restaurant.container);
 
     if ($container.length === 0) {
-        console.error(
-            `V index.html chýba kontajner ${restaurant.container}.`
-        );
         return;
     }
 
-    // Najprv skúsime načítať menu z localStorage.
-    // Pri ručnej aktualizácii túto možnosť preskočíme.
     if (!forceRefresh) {
         const saved = loadSavedMenu(restaurant.id);
 
@@ -754,7 +720,6 @@ async function loadRestaurant(restaurant, forceRefresh = false) {
         }
     }
 
-    // Načítanie lokálneho HTML súboru.
     $container.text(`Načítavam menu ${restaurant.name}...`);
 
     try {
@@ -769,30 +734,20 @@ async function loadRestaurant(restaurant, forceRefresh = false) {
 
         menuData[restaurant.id] = days;
 
-        // Uložíme menu a čas aktualizácie.
         const savedAt = saveMenu(restaurant.id, days);
 
         renderMenu(restaurant, days);
         showUpdateTime(restaurant, savedAt);
 
-    } catch (error) {
+    } catch {
         $container.text(
             `Menu ${restaurant.name} sa nepodarilo načítať.`
-        );
-
-        console.error(
-            `Chyba pri načítaní ${restaurant.name}:`,
-            error
         );
     }
 }
 
 
-
-// AKTUALIZOVANIE VŠETKYCH MENU
-
 // AKTUALIZOVANIE VSETKYCH MENU
-
 async function refreshAllMenus() {
     const button = document.getElementById("update-menu");
     const message = document.getElementById("menu-storage-message");
@@ -809,9 +764,7 @@ async function refreshAllMenus() {
 
        message.textContent = "";
 
-    } catch (error) {
-        console.error("Chyba pri aktualizácii menu:", error);
-
+    } catch {
         message.textContent =
             "Pri aktualizácii sa vyskytla chyba.";
 
@@ -822,7 +775,6 @@ async function refreshAllMenus() {
 
 
 // VYMAZANIE ULOŽENÝCH DÁT
-
 function clearSavedMenus() {
     restaurants.forEach(restaurant => {
         localStorage.removeItem(
@@ -833,19 +785,16 @@ function clearSavedMenus() {
 
 
 
-// SPUSTENIE STRÁNKY
 
 setupDayButtons();
 setupRestaurantFilters();
 
-// Pripojenie tlačidiel.
 document.getElementById("update-menu")
     .addEventListener("click", refreshAllMenus);
 
 document.getElementById("clear-menu-storage")
     .addEventListener("click", clearSavedMenus);
 
-// Načítanie všetkých reštaurácií.
 restaurants.forEach(restaurant => {
     loadRestaurant(restaurant);
 });

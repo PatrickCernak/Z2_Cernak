@@ -681,20 +681,18 @@ function setupRestaurantFilters() {
 
 // ZOBRAZENIE CASU POSLEDNEJ AKTUALIZACIE
 function showUpdateTime(restaurant, date) {
-    const timeElement = document.getElementById(
+    const updateElement = document.getElementById(
         `${restaurant.id}-updated`
     );
 
-    if (!timeElement) {
+    if (!updateElement) {
         return;
     }
 
     if (date) {
-        timeElement.textContent = date.toLocaleString("sk-SK");
-        timeElement.dateTime = date.toISOString();
+        updateElement.textContent = date.toLocaleString("sk-SK");
     } else {
-        timeElement.textContent = "zatiaľ žiadna";
-        timeElement.removeAttribute("datetime");
+        updateElement.textContent = "zatiaľ žiadna";
     }
 }
 
